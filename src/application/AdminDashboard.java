@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 public class AdminDashboard extends Application {
 
     private boolean isLoggedIn = true;
+    private DatabaseManager databaseManager = new DatabaseManager(); // Deklarasi dan inisialisasi databaseManager
+    private int adminId = 1; // Ganti dengan nilai sesuai kebutuhan atau cara Anda mendapatkan adminId
 
     public static void main(String[] args) {
         launch(args);

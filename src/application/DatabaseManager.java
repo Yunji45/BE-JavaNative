@@ -9,7 +9,7 @@ import application.ManageProduct.Product;
 import java.sql.ResultSet;
 import application.Cart;
 import application.History;
-import java.sql.Timestamp;  // Ganti import ini
+import java.sql.Timestamp;
 import java.sql.Statement;
 
 
@@ -250,7 +250,12 @@ public class DatabaseManager {
             statement.setInt(2, history.getProductId());
             statement.setInt(3, history.getQuantity());
             statement.setInt(4, history.getTotalPrice());
-            statement.setTimestamp(5, history.getTransactionDate());
+
+            // Mengonversi String ke Timestamp jika diperlukan
+            String dateString = history.getTransactionDate();
+            Timestamp timestamp = Timestamp.valueOf(dateString);
+
+            statement.setTimestamp(5, timestamp);
 
             int affectedRows = statement.executeUpdate();
 
