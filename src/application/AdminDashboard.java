@@ -99,9 +99,11 @@ public class AdminDashboard extends Application {
         manageProductMenuItem.setOnAction(e -> openManageProductScene(primaryStage));
 
         viewHistoryMenuItem.setOnAction(e -> {
-            // Example action: navigating to the View History page
-            System.out.println("Navigating to View History page");
+            // Create an instance of ViewHistoryPage and display it
+            ViewPageHistory viewPageHistory = new ViewPageHistory(databaseManager, adminId);
+            viewPageHistory.display();
         });
+
 
         logoutMenuItem.setOnAction(e -> logout(primaryStage));
 

@@ -317,7 +317,32 @@ public class DatabaseManager {
 
         return historyEntries;
     }
+    
+    public List<History> getAllHistoryEntries() {
+        List<History> historyEntries = new ArrayList<>();
+        String query = "SELECT * FROM history";
 
+        try (PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int transactionId = resultSet.getInt("transaction_id");
+                int userId = resultSet.getInt("user_id");
+                int productId = resultSet.getInt("product_id");
+                int quantity = resultSet.getInt("quantity");
+                int totalPrice = resultSet.getInt("total_price");
+                Timestamp transactionDate = resultSet.getTimestamp("transaction_date");
+
+                History history = new History(userId, productId, quantity, totalPrice, transactionDate);
+                history.setTransactionId(transactionId);
+                historyEntries.add(history);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return historyEntries;
+    }
 
 
 
